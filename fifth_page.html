@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #pieChart {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var fitnessScore = localStorage.getItem('fitnessScore');
+            fitnessScore = parseInt(fitnessScore);
+
+            var data = google.visualization.arrayToDataTable([
+                ['Category', 'Score'],
+                ['Fitness', fitnessScore],
+            ]);
+
+            var options = {
+                title: 'Fitness Score',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+    <div id="pieChart"></div>
+
+
+        <div class="navigation-buttons">
+            <button onclick="location.href='third_page.html'">Check Your Mental Health</button>
+            <button onclick="location.href='#'">Check Your Nutrition Level</button>
+        </div>
+    </div>
+<script src="app.js"></script>
+</body>
+</html>

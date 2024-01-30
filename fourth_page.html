@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: darkblue;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        function calculateScore() {
+            var score = 0;
+
+            // Iterate through each question
+            for (var i = 1; i <= 10; i++) {
+                var answers = document.getElementsByName('q' + i);
+
+                // Find the selected answer for each question
+                for (var j = 0; j < answers.length; j++) {
+                    if (answers[j].checked) {
+                        var value = answers[j].value;
+                        
+                        // Assign scores based on the selected answer
+                        if (value === 'Agree') {
+                            score += 3;
+                        } else if (value === 'Neutral') {
+                            score += 1;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            // Store the score in localStorage for later retrieval
+            localStorage.setItem('fitnessScore', score);
+
+            // Redirect to the fifth page
+            window.location.href = 'fifth_page.html';
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <h2>Physical Health Quiz</h2>
+
+        <!-- Question 1 -->
+        <label>1. Regular exercise is an essential part of maintaining good physical health.</label>
+        <input type="radio" name="q1" value="Agree"> Agree
+        <input type="radio" name="q1" value="Neutral"> Neutral
+        <input type="radio" name="q1" value="Disagree"> Disagree
+
+        <!-- Question 2 -->
+        <label>2. I prioritize getting an adequate amount of sleep each night.</label>
+        <input type="radio" name="q2" value="Agree"> Agree
+        <input type="radio" name="q2" value="Neutral"> Neutral
+        <input type="radio" name="q2" value="Disagree"> Disagree
+
+        <!-- Question 3 -->
+        <label>3. My diet consists of a variety of nutritious foods, including fruits and vegetables.</label>
+        <input type="radio" name="q3" value="Agree"> Agree
+        <input type="radio" name="q3" value="Neutral"> Neutral
+        <input type="radio" name="q3" value="Disagree"> Disagree
+
+        <!-- Question 4 -->
+        <label>4. I engage in activities that help manage stress, such as meditation or deep breathing.</label>
+        <input type="radio" name="q4" value="Agree"> Agree
+        <input type="radio" name="q4" value="Neutral"> Neutral
+        <input type="radio" name="q4" value="Disagree"> Disagree
+
+        <!-- Question 5 -->
+        <label>5. I rarely engage in sedentary activities for prolonged periods (e.g., sitting for hours without movement).</label>
+        <input type="radio" name="q5" value="Agree"> Agree
+        <input type="radio" name="q5" value="Neutral"> Neutral
+        <input type="radio" name="q5" value="Disagree"> Disagree
+
+        <!-- Question 6 -->
+        <label>6. I avoid harmful substances such as excessive alcohol, tobacco, or illicit drugs.</label>
+        <input type="radio" name="q6" value="Agree"> Agree
+        <input type="radio" name="q6" value="Neutral"> Neutral
+        <input type="radio" name="q6" value="Disagree"> Disagree
+
+        <!-- Question 7 -->
+        <label>7. I consciously maintain proper posture during daily activities.</label>
+        <input type="radio" name="q7" value="Agree"> Agree
+        <input type="radio" name="q7" value="Neutral"> Neutral
+        <input type="radio" name="q7" value="Disagree"> Disagree
+
+        <!-- Question 8 -->
+        <label>8. I undergo regular health check-ups and screenings for early detection of potential health issues.</label>
+        <input type="radio" name="q8" value="Agree"> Agree
+        <input type="radio" name="q8" value="Neutral"> Neutral
+        <input type="radio" name="q8" value="Disagree"> Disagree
+
+        <!-- Question 9 -->
+        <label>9. I actively participate in activities that enhance my cardiovascular endurance (e.g., running, swimming, cycling).</label>
+        <input type="radio" name="q9" value="Agree"> Agree
+        <input type="radio" name="q9" value="Neutral"> Neutral
+        <input type="radio" name="q9" value="Disagree"> Disagree
+
+        <!-- Question 10 -->
+        <label>10. I take measures to prevent injuries during physical activities (e.g., proper warm-up, using appropriate gear).</label>
+        <input type="radio" name="q10" value="Agree"> Agree
+        <input type="radio" name="q10" value="Neutral"> Neutral
+        <input type="radio" name="q10" value="Disagree"> Disagree
+
+        <button type="button" onclick="calculateScore()">Submit</button>
+    </form>
+</body>
+</html>
